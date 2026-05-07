@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout1 :: layout(~{::section})}">
+<body>
+
+<section>
+    <div class="page-header">
+        <h2>User Management</h2>
+        <!-- Button to go to the Create User page -->
+		<a th:href="@{/users/create}" class="btn btn-primary">+ Add New User</a>
+    </div>
+
+    <div class="card">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Full Name</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through the 'users' list passed from the Controller -->
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}">1</td>
+                    <td th:text="${user.username}">johndoe</td>
+                    <td th:text="${user.email}">john@example.com</td>
+                    <td th:text="${user.fullName}">John Doe</td>
+                    <td>
+                        <span class="badge" th:text="${user.role}">USER</span>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-edit">Edit</button>
+                        <button class="btn btn-sm btn-delete">Delete</button>
+                    </td>
+                </tr>
+                <!-- Show this if the database is empty -->
+                <tr th:if="${#lists.isEmpty(users)}">
+                    <td colspan="6" style="text-align: center;">No users found.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+</body>
+</html>

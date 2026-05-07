@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Commerce Admin</title>
+    <!-- Link to our static CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Fragment -->
+        <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+        <div class="main-panel">
+            <!-- Header Fragment -->
+            <div th:replace="~{fragments/header :: header}"></div>
+
+            <!-- Dynamic Content injected here -->
+            <div class="content" th:replace="${content}"></div>
+
+            <!-- Footer Fragment -->
+            <div th:replace="~{fragments/footer :: footer}"></div>
+        </div>
+    </div>
+</body>
+</html>
